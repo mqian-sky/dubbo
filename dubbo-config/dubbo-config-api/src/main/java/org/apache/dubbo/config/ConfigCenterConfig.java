@@ -40,6 +40,7 @@ import static org.apache.dubbo.config.Constants.CONFIG_TIMEOUT_KEY;
 
 /**
  * ConfigCenterConfig
+ * 配置中心配置
  */
 public class ConfigCenterConfig extends AbstractConfig {
     private AtomicBoolean inited = new AtomicBoolean(false);

@@ -28,6 +28,7 @@ import java.util.Collection;
 
 /**
  * ExchangeServerDelegate
+ * 装饰者
  */
 public class ExchangeServerDelegate implements ExchangeServer {
 

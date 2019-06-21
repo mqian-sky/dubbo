@@ -95,6 +95,7 @@ import static org.apache.dubbo.common.utils.NetUtils.isInvalidPort;
 
 /**
  * ServiceConfig
+ * 服务配置
  *
  * @export
  */
@@ -103,9 +104,10 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
     private static final long serialVersionUID = 3033787999037024738L;
 
     /**
+     * 协议具有自适应功能的实现，在不同的场景中会有所不同
      * The {@link Protocol} implementation with adaptive functionality,it will be different in different scenarios.
      * A particular {@link Protocol} implementation is determined by the protocol attribute in the {@link URL}.
-     * For example:
+     * For example: 例如
      *
      * <li>when the url is registry://224.5.6.7:1234/org.apache.dubbo.registry.RegistryService?application=dubbo-sample,
      * then the protocol is <b>RegistryProtocol</b></li>
@@ -115,17 +117,20 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
      * <p>
      * Actually，when the {@link ExtensionLoader} init the {@link Protocol} instants,it will automatically wraps two
      * layers, and eventually will get a <b>ProtocolFilterWrapper</b> or <b>ProtocolListenerWrapper</b>
+     * 初始化协议实例时，它将自动包装两个ProtocolFilterWrapper或者ProtocolListenerWrapper
      */
     private static final Protocol protocol = ExtensionLoader.getExtensionLoader(Protocol.class).getAdaptiveExtension();
 
     /**
      * A {@link ProxyFactory} implementation that will generate a exported service proxy,the JavassistProxyFactory is its
      * default implementation
+     * 实现将生成导出的服务代理，javassistproxyFactory是其默认实现
      */
     private static final ProxyFactory proxyFactory = ExtensionLoader.getExtensionLoader(ProxyFactory.class).getAdaptiveExtension();
 
     /**
      * A random port cache, the different protocols who has no port specified have different random port
+     * 随机端口缓存，没有指定端口的不同协议具有不同的随机端口
      */
     private static final Map<String, Integer> RANDOM_PORT_MAP = new HashMap<String, Integer>();
 
@@ -449,6 +454,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     private void doExportUrls() {
+        // 获取注册中心地址
         List<URL> registryURLs = loadRegistries(true);
         for (ProtocolConfig protocolConfig : protocols) {
             String pathKey = URL.buildKey(getContextPath(protocolConfig).map(p -> p + "/" + path).orElse(path), group, version);
@@ -464,9 +470,10 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
             name = DUBBO;
         }
 
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         map.put(SIDE_KEY, PROVIDER_SIDE);
 
+        // 是否有dubbo:argument配置 加入map
         appendRuntimeParameters(map);
         appendParameters(map, metrics);
         appendParameters(map, application);
@@ -536,6 +543,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
             map.put(GENERIC_KEY, generic);
             map.put(METHODS_KEY, ANY_VALUE);
         } else {
+            // 判断是否是method级别的配置
             String revision = Version.getVersion(interfaceClass, version);
             if (revision != null && revision.length() > 0) {
                 map.put(REVISION_KEY, revision);
@@ -561,21 +569,24 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
         Integer port = this.findConfigedPorts(protocolConfig, name, map);
         URL url = new URL(name, host, port, getContextPath(protocolConfig).map(p -> p + "/" + path).orElse(path), map);
 
+        // 根据host:port protocolName map 构造url
         if (ExtensionLoader.getExtensionLoader(ConfiguratorFactory.class)
                 .hasExtension(url.getProtocol())) {
             url = ExtensionLoader.getExtensionLoader(ConfiguratorFactory.class)
                     .getExtension(url.getProtocol()).getConfigurator(url).configure(url);
         }
 
+        // 服务暴露的作用域
         String scope = url.getParameter(SCOPE_KEY);
         // don't export when none is configured
+        // 当scope = none 不暴露
         if (!SCOPE_NONE.equalsIgnoreCase(scope)) {
 
-            // export to local if the config is not remote (export to remote only when config is remote)
+            // 暴露本地服务
             if (!SCOPE_REMOTE.equalsIgnoreCase(scope)) {
                 exportLocal(url);
             }
-            // export to remote if the config is not local (export to local only when config is local)
+            // 暴露远程服务
             if (!SCOPE_LOCAL.equalsIgnoreCase(scope)) {
                 if (!isOnlyInJvm() && logger.isInfoEnabled()) {
                     logger.info("Export dubbo service " + interfaceClass.getName() + " to url " + url);
@@ -583,6 +594,7 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
                 if (CollectionUtils.isNotEmpty(registryURLs)) {
                     for (URL registryURL : registryURLs) {
                         //if protocol is only injvm ,not register
+                        // 如果是本地暴露服务就不注册到注册中心
                         if (LOCAL_PROTOCOL.equalsIgnoreCase(url.getProtocol())) {
                             continue;
                         }
@@ -601,9 +613,11 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
                             registryURL = registryURL.addParameter(PROXY_KEY, proxy);
                         }
 
+                        // 生成invoker
                         Invoker<?> invoker = proxyFactory.getInvoker(ref, (Class) interfaceClass, registryURL.addParameterAndEncoded(EXPORT_KEY, url.toFullString()));
                         DelegateProviderMetaDataInvoker wrapperInvoker = new DelegateProviderMetaDataInvoker(invoker, this);
 
+                        // 暴露invoker
                         Exporter<?> exporter = protocol.export(wrapperInvoker);
                         exporters.add(exporter);
                     }
@@ -630,6 +644,10 @@ public class ServiceConfig<T> extends AbstractServiceConfig {
     @SuppressWarnings({"unchecked", "rawtypes"})
     /**
      * always export injvm
+     *
+     * 1.将url协议配置为injvm
+     * 2.构造filter链，虽然是本地export,但是会经过定义好的filter
+     * 3.构造InjvmExporter
      */
     private void exportLocal(URL url) {
         URL local = URLBuilder.from(url)

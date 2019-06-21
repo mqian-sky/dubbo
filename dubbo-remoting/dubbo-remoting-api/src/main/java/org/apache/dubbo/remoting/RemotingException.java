@@ -20,6 +20,7 @@ import java.net.InetSocketAddress;
 
 /**
  * RemotingException. (API, Prototype, ThreadSafe)
+ * 远程通信基础异常
  *
  * @export
  * @see org.apache.dubbo.remoting.exchange.support.DefaultFuture#get()

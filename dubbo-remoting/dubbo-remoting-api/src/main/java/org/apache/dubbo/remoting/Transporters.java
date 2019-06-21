@@ -24,11 +24,13 @@ import org.apache.dubbo.remoting.transport.ChannelHandlerDispatcher;
 
 /**
  * Transporter facade. (API, Static, ThreadSafe)
+ * 传输层外观模式
  */
 public class Transporters {
 
     static {
         // check duplicate jar package
+        // 检查重复的jar包
         Version.checkDuplicate(Transporters.class);
         Version.checkDuplicate(RemotingException.class);
     }

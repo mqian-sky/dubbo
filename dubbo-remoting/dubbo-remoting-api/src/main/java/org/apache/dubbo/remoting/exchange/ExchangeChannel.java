@@ -23,6 +23,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * ExchangeChannel. (API/SPI, Prototype, ThreadSafe)
+ * 消息交换通道接口
  */
 public interface ExchangeChannel extends Channel {
 
@@ -47,6 +48,7 @@ public interface ExchangeChannel extends Channel {
 
     /**
      * get message handler.
+     * 返回信息交换处理器
      *
      * @return message handler
      */

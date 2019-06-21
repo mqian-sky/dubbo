@@ -32,6 +32,8 @@ public interface Server extends Endpoint, Resetable, IdleSensible {
 
     /**
      * is bound.
+     * 是否绑定到本地端口
+     * 也就是该服务器启动，能够成功连接、接受消息，提供服务
      *
      * @return bound
      */
@@ -39,6 +41,7 @@ public interface Server extends Endpoint, Resetable, IdleSensible {
 
     /**
      * get channels.
+     * 获取连接该服务器通道
      *
      * @return channels
      */
@@ -46,6 +49,7 @@ public interface Server extends Endpoint, Resetable, IdleSensible {
 
     /**
      * get channel.
+     * 根据远程地址获取对应的通道
      *
      * @param remoteAddress
      * @return channel

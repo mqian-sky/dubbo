@@ -20,6 +20,7 @@ import java.net.InetSocketAddress;
 
 /**
  * ReceiveException
+ * 远程通信执行异常
  *
  * @export
  */

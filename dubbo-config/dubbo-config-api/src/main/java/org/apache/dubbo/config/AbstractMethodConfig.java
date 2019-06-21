@@ -30,6 +30,7 @@ import static org.apache.dubbo.rpc.Constants.THROW_PREFIX;
 
 /**
  * AbstractMethodConfig
+ * 抽象方法配置
  *
  * @export
  */
@@ -39,32 +40,39 @@ public abstract class AbstractMethodConfig extends AbstractConfig {
 
     /**
      * The timeout for remote invocation in milliseconds
+     * 远程调用的超时(毫秒)
      */
     protected Integer timeout;
 
     /**
      * The retry times
+     * 重试次数
      */
     protected Integer retries;
 
     /**
      * max concurrent invocations
+     * 最大的并发调用数
      */
     protected Integer actives;
 
     /**
      * The load balance
+     * 负载平衡
      */
     protected String loadbalance;
 
     /**
      * Whether to async
      * note that: it is an unreliable asynchronism that ignores return values and does not block threads.
+     * 是否异步
+     * 注意：忽略返回值而不阻塞线程是不可靠的异步。
      */
     protected Boolean async;
 
     /**
      * Whether to ack async-sent
+     * 是否确认异步发送
      */
     protected Boolean sent;
 
@@ -73,6 +81,10 @@ public abstract class AbstractMethodConfig extends AbstractConfig {
      *
      * note that: the mock doesn't support on the provider side，and the mock is executed when a non-business exception
      * occurs after a remote service call
+     *
+     * 当服务无法执行时调用的模拟类的名称
+     * 注意：mock在提供程序端不支持，当非业务异常时执行mock
+     * 在远程服务调用后发生
      */
     protected String mock;
 
@@ -95,11 +107,13 @@ public abstract class AbstractMethodConfig extends AbstractConfig {
 
     /**
      * The customized parameters
+     * 自定义参数
      */
     protected Map<String, String> parameters;
 
     /**
      * Forks for forking cluster
+     * 并行调用几个服务器
      */
     protected Integer forks;
 

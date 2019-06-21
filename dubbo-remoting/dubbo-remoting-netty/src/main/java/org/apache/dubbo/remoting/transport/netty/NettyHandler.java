@@ -34,14 +34,19 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * NettyHandler
+ *
+ * 加@Sharable 也就是说该处理器可以从属于多个ChannelPipeline
  */
 @Sharable
 public class NettyHandler extends SimpleChannelHandler {
 
+    // 通道集合
     private final Map<String, Channel> channels = new ConcurrentHashMap<String, Channel>(); // <ip:port, channel>
 
+    // url对象
     private final URL url;
 
+    // 通道处理器
     private final ChannelHandler handler;
 
     public NettyHandler(URL url, ChannelHandler handler) {

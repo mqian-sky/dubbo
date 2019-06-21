@@ -33,6 +33,7 @@ import static org.apache.dubbo.registry.Constants.EXTRA_KEYS_KEY;
 
 /**
  * RegistryConfig
+ * 注册配置
  *
  * @export
  */

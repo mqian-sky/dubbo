@@ -27,6 +27,7 @@ public interface Exporter<T> {
 
     /**
      * get invoker.
+     * 获取对应实体域invoker
      *
      * @return invoker
      */

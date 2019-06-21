@@ -22,7 +22,7 @@ package org.apache.dubbo.common;
 public interface Resetable {
 
     /**
-     * reset.
+     * reset. 根据新传入的URL属性，重置自己内部的一些属性
      *
      * @param url
      */

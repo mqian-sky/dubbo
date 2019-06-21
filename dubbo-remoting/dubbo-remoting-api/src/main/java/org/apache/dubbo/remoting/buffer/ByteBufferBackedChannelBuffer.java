@@ -22,6 +22,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 
+/**
+ * 基于java NIO 中的ByteBuffer实现
+ */
 public class ByteBufferBackedChannelBuffer extends AbstractChannelBuffer {
 
     private final ByteBuffer buffer;

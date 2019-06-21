@@ -23,6 +23,7 @@ import java.util.Map;
 
 /**
  * MonitorConfig
+ * 监控配置
  *
  * @export
  */

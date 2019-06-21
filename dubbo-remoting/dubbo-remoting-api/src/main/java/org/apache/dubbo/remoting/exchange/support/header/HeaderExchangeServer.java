@@ -48,6 +48,7 @@ import static org.apache.dubbo.remoting.utils.UrlUtils.getIdleTimeout;
 
 /**
  * ExchangeServerImpl
+ * 基于协议头的信息交换服务器实现类
  */
 public class HeaderExchangeServer implements ExchangeServer {
 
@@ -56,6 +57,7 @@ public class HeaderExchangeServer implements ExchangeServer {
     private final Server server;
     private AtomicBoolean closed = new AtomicBoolean(false);
 
+    // 心跳定时器
     private static final HashedWheelTimer IDLE_CHECK_TIMER = new HashedWheelTimer(new NamedThreadFactory("dubbo-server-idleCheck", true), 1,
             TimeUnit.SECONDS, TICKS_PER_WHEEL);
 

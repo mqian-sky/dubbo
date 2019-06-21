@@ -44,6 +44,7 @@ import static org.apache.dubbo.config.Constants.TEST_ENVIRONMENT;
 
 /**
  * The application info
+ * 应用程序信息
  *
  * @export
  */
@@ -93,6 +94,7 @@ public class ApplicationConfig extends AbstractConfig {
 
     /**
      * Registry centers
+     * 注册中心
      */
     private List<RegistryConfig> registries;
     private String registryIds;
@@ -104,31 +106,37 @@ public class ApplicationConfig extends AbstractConfig {
 
     /**
      * Is default or not
+     * 是否默认
      */
     private Boolean isDefault;
 
     /**
      * Directory for saving thread dump
+     * 保存线程转储的目录
      */
     private String dumpDirectory;
 
     /**
      * Whether to enable qos or not
+     * 是否启用QoS
      */
     private Boolean qosEnable;
 
     /**
      * The qos port to listen
+     * 监听qos端口
      */
     private Integer qosPort;
 
     /**
      * Should we accept foreign ip or not?
+     * 是否接受陌生的ip
      */
     private Boolean qosAcceptForeignIp;
 
     /**
      * Customized parameters
+     * 自定义参数
      */
     private Map<String, String> parameters;
 

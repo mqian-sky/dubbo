@@ -29,6 +29,7 @@ import static org.apache.dubbo.config.Constants.OWNER;
 
 /**
  * The module info
+ * 模块配置
  *
  * @export
  */

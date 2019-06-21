@@ -31,6 +31,7 @@ import static org.apache.dubbo.rpc.Constants.STUB_EVENT_KEY;
 
 /**
  * AbstractConsumerConfig
+ * 抽象消费者配置
  *
  * @export
  * @see org.apache.dubbo.config.ReferenceConfig
@@ -43,26 +44,31 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
 
     /**
      * Check if service provider exists, if not exists, it will be fast fail
+     * 检查服务提供程序是否存在，如果不存在，将很快失败。
      */
     protected Boolean check;
 
     /**
      * Whether to eagle-init
+     * 是否初始化
      */
     protected Boolean init;
 
     /**
      * Whether to use generic interface
+     * 是否使用通用接口
      */
     protected String generic;
 
     /**
      * Whether to find reference's instance from the current JVM
+     * 是否从当前JVM中查找引用的实例
      */
     protected Boolean injvm;
 
     /**
      * Lazy create connection
+     * 延迟创建连接
      */
     protected Boolean lazy = false;
 
@@ -78,11 +84,13 @@ public abstract class AbstractReferenceConfig extends AbstractInterfaceConfig {
 
     /**
      * The remote service version the customer side will reference
+     * 客户方将参考的远程服务版本
      */
     protected String version;
 
     /**
      * The remote service group the customer side will reference
+     * 客户方将参考的远程服务组
      */
     protected String group;
 

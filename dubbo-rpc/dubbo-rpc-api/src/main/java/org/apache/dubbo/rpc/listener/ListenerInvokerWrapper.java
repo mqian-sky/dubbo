@@ -30,6 +30,7 @@ import java.util.List;
 
 /**
  * ListenerInvoker
+ * 服务引用监听器的包装类
  */
 public class ListenerInvokerWrapper<T> implements Invoker<T> {
 
@@ -49,6 +50,7 @@ public class ListenerInvokerWrapper<T> implements Invoker<T> {
             for (InvokerListener listener : listeners) {
                 if (listener != null) {
                     try {
+                        // 调用在服务引用的时候进行监听
                         listener.referred(invoker);
                     } catch (Throwable t) {
                         logger.error(t.getMessage(), t);

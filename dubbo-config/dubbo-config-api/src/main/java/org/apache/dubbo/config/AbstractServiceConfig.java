@@ -33,6 +33,7 @@ import static org.apache.dubbo.rpc.Constants.TOKEN_KEY;
 
 /**
  * AbstractServiceConfig
+ * 抽象服务配置
  *
  * @export
  */
@@ -42,36 +43,43 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
 
     /**
      * The service version
+     * 服务版本
      */
     protected String version;
 
     /**
      * The service group
+     * 服务组
      */
     protected String group;
 
     /**
      * whether the service is deprecated
+     * 服务是否已弃用
      */
     protected Boolean deprecated = false;
 
     /**
      * The time delay register service (milliseconds)
+     * 延时注册服务（毫秒）
      */
     protected Integer delay;
 
     /**
      * Whether to export the service
+     * 是否暴露服务
      */
     protected Boolean export;
 
     /**
      * The service weight
+     * 服务权重
      */
     protected Integer weight;
 
     /**
      * Document center
+     * 文档中心
      */
     protected String document;
 
@@ -79,21 +87,27 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
      * Whether to register as a dynamic service or not on register center, the value is true, the status will be enabled
      * after the service registered,and it needs to be disabled manually; if you want to disable the service, you also need
      * manual processing
+     * 无论是否在注册中心注册为动态服务，该值为真，状态将被启用。
+     * 服务注册后，需要手动禁用；如果要禁用该服务，还需要
+     * 人工处理
      */
     protected Boolean dynamic = true;
 
     /**
      * Whether to use token
+     * 是否使用令牌
      */
     protected String token;
 
     /**
      * Whether to export access logs to logs
+     * 是否将访问日志导出到日志
      */
     protected String accesslog;
 
     /**
      * The protocol list the service will export with
+     * 服务将用其导出的协议列表
      */
     protected List<ProtocolConfig> protocols;
     protected String protocolIds;
@@ -103,11 +117,13 @@ public abstract class AbstractServiceConfig extends AbstractInterfaceConfig {
 
     /**
      * Whether to register
+     * 是否需要注册
      */
     private Boolean register = true;
 
     /**
      * Warm up period
+     * 预热期
      */
     private Integer warmup;
 

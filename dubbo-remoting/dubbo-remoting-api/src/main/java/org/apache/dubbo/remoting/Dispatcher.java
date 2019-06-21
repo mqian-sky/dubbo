@@ -29,6 +29,9 @@ public interface Dispatcher {
 
     /**
      * dispatch the message to threadpool.
+     * 调度器接口 dispatch 是线程池的调度方法
+     * 1.该接口是一个可扩展接口，并且默认实现Alldispathcher,也就是所有消息都派发到线程池，包括请求，响应，连接事件，断开事件，心跳等
+     * 2.用了Adaptive注解，也就是按照Url中配置来加载实现类，后面两个参数中为了兼容老版本，如果这是三个key对应的值为空，就选择AllDispatcher来实现
      *
      * @param handler
      * @param url

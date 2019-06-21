@@ -90,6 +90,7 @@ import static org.apache.dubbo.common.extension.ExtensionLoader.getExtensionLoad
 
 /**
  * AbstractDefaultConfig
+ * 抽象默认配置
  *
  * @export
  */
@@ -99,68 +100,83 @@ public abstract class AbstractInterfaceConfig extends AbstractMethodConfig {
 
     /**
      * Local impl class name for the service interface
+     * 服务接口的本地impl类名
      */
     protected String local;
 
     /**
      * Local stub class name for the service interface
+     * 服务接口的本地存根类名称
      */
     protected String stub;
 
     /**
      * Service monitor
+     * 服务监视器
      */
     protected MonitorConfig monitor;
 
     /**
      * Strategies for generating dynamic agents，there are two strategies can be choosed: jdk and javassist
+     * 生成动态代理的策略，可以选择两种策略：JDK和Javassist
      */
     protected String proxy;
 
     /**
      * Cluster type
+     * 集群类型
      */
     protected String cluster;
 
     /**
      * The {@link Filter} when the provider side exposed a service or the customer side references a remote service used,
      * if there are more than one, you can use commas to separate them
+     * 当提供方公开服务或客户方引用所使用的远程服务时，过滤器
+     * 如果有多个，可以使用逗号分隔它们
      */
     protected String filter;
 
     /**
      * The Listener when the provider side exposes a service or the customer side references a remote service used
      * if there are more than one, you can use commas to separate them
+     * 当提供方公开服务或客户方引用所使用的远程服务时，侦听器
+     * 如果有多个，可以使用逗号分隔它们
      */
     protected String listener;
 
     /**
      * The owner of the service providers
+     * 服务提供的拥有者
      */
     protected String owner;
 
     /**
      * Connection limits, 0 means shared connection, otherwise it defines the connections delegated to the current service
+     * 连接限制，0表示共享连接，否则它定义委托给当前服务的连接
      */
     protected Integer connections;
 
     /**
      * The layer of service providers
+     * 服务提供者层
      */
     protected String layer;
 
     /**
      * The application info
+     * 应用程序配置信息
      */
     protected ApplicationConfig application;
 
     /**
      * The module info
+     * 模块信息
      */
     protected ModuleConfig module;
 
     /**
      * Registry centers
+     * 注册中心信息
      */
     protected List<RegistryConfig> registries;
 
@@ -171,15 +187,23 @@ public abstract class AbstractInterfaceConfig extends AbstractMethodConfig {
 
     /**
      * Disconnection events
+     * 断开连接事件
      */
     protected String ondisconnect;
 
     /**
      * The metrics configuration
+     * 度量配置信息
      */
     protected MetricsConfig metrics;
+    /**
+     * 元数据报表信息
+     */
     protected MetadataReportConfig metadataReportConfig;
 
+    /**
+     * 配置中心配置信息
+     */
     protected ConfigCenterConfig configCenter;
 
     // callback limits

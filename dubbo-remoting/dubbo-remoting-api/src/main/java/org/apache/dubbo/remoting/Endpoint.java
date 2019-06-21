@@ -22,7 +22,7 @@ import java.net.InetSocketAddress;
 
 /**
  * Endpoint. (API/SPI, Prototype, ThreadSafe)
- *
+ * 端的概念
  *
  * @see org.apache.dubbo.remoting.Channel
  * @see org.apache.dubbo.remoting.Client
@@ -32,6 +32,7 @@ public interface Endpoint {
 
     /**
      * get url.
+     * 获得端的url
      *
      * @return url
      */
@@ -39,6 +40,7 @@ public interface Endpoint {
 
     /**
      * get channel handler.
+     * 获取端的通道处理器
      *
      * @return channel handler
      */
@@ -46,6 +48,7 @@ public interface Endpoint {
 
     /**
      * get local address.
+     * 获取端的本地地址
      *
      * @return local address.
      */
@@ -53,6 +56,7 @@ public interface Endpoint {
 
     /**
      * send message.
+     * 发生消息
      *
      * @param message
      * @throws RemotingException
@@ -61,6 +65,7 @@ public interface Endpoint {
 
     /**
      * send message.
+     * 发送消息 sent是 是否已经发送的标记 区分是否第一次发送
      *
      * @param message
      * @param sent    already sent to socket?
@@ -69,18 +74,24 @@ public interface Endpoint {
 
     /**
      * close the channel.
+     * 关闭通道
      */
     void close();
 
     /**
      * Graceful close the channel.
+     *
      */
     void close(int timeout);
 
+    /**
+     * 开始关闭
+     */
     void startClose();
 
     /**
      * is closed.
+     * 是否已经关闭
      *
      * @return closed
      */

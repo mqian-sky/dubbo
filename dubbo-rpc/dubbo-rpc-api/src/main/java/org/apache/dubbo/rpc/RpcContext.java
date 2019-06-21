@@ -56,6 +56,7 @@ public class RpcContext {
 
     /**
      * use internal thread local to improve performance
+     * 本地上下文
      */
     // FIXME REQUEST_CONTEXT
     private static final InternalThreadLocal<RpcContext> LOCAL = new InternalThreadLocal<RpcContext>() {
@@ -65,6 +66,9 @@ public class RpcContext {
         }
     };
 
+    /**
+     * 服务上下文
+     */
     // FIXME RESPONSE_CONTEXT
     private static final InternalThreadLocal<RpcContext> SERVER_LOCAL = new InternalThreadLocal<RpcContext>() {
         @Override
@@ -73,7 +77,9 @@ public class RpcContext {
         }
     };
 
+    // 附加值集合
     private final Map<String, String> attachments = new HashMap<String, String>();
+    // 上下文值
     private final Map<String, Object> values = new HashMap<String, Object>();
 
     private List<URL> urls;

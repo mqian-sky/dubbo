@@ -35,41 +35,49 @@ public interface Constants {
      */
     /**
      * Application name;
+     * 应用名
      */
     String NAME = "name";
 
     /**
      * Application owner name;
+     * 拥有者
      */
     String OWNER = "owner";
 
     /**
      * Running application organization name.
+     * 组织
      */
     String ORGANIZATION = "organization";
 
     /**
      * Application architecture name.
+     * 应用程序体系结构名称
      */
     String ARCHITECTURE = "architecture";
 
     /**
      * Environment name
+     * 环境名称
      */
     String ENVIRONMENT = "environment";
 
     /**
      * Test environment key.
+     * 环境 key test
      */
     String TEST_ENVIRONMENT = "test";
 
     /**
      * Development environment key.
+     * 开发环境变量key
      */
     String DEVELOPMENT_ENVIRONMENT = "develop";
 
     /**
      * Production environment key.
+     * 生产环境变量key
      */
     String PRODUCTION_ENVIRONMENT = "product";
 

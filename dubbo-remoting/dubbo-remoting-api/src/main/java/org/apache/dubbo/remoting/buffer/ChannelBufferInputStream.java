@@ -22,8 +22,11 @@ import java.io.InputStream;
 
 public class ChannelBufferInputStream extends InputStream {
 
+    // 缓存区对象
     private final ChannelBuffer buffer;
+    // 开始写入的索引
     private final int startIndex;
+    // 结束索引
     private final int endIndex;
 
     public ChannelBufferInputStream(ChannelBuffer buffer) {

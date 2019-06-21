@@ -34,6 +34,7 @@ import static org.apache.dubbo.config.Constants.ON_THROW_METHOD_KEY;
 
 /**
  * The method configuration
+ * 方法配置
  *
  * @export
  */
@@ -43,81 +44,99 @@ public class MethodConfig extends AbstractMethodConfig {
 
     /**
      * The method name
+     * 方法名
      */
     private String name;
 
     /**
      * Stat
+     * 统计
      */
     private Integer stat;
 
     /**
      * Whether to retry
+     * 是否重试
      */
     private Boolean retry;
 
     /**
      * If it's reliable
+     * 是否可靠的
      */
     private Boolean reliable;
 
     /**
      * Thread limits for method invocations
+     * 方法调用的线程限制
      */
     private Integer executes;
 
     /**
      * If it's deprecated
+     * 是否已弃用
      */
     private Boolean deprecated;
 
     /**
      * Whether to enable sticky
+     * 是否需要粘性的
      */
     private Boolean sticky;
 
     /**
      * Whether need to return
+     * 是否需要返回
      */
     private Boolean isReturn;
 
     /**
      * Callback instance when async-call is invoked
+     * 调用异步调用时的回调实例
      */
     private Object oninvoke;
 
     /**
      * Callback method when async-call is invoked
+     * 调用异步调用时的回调方法
      */
     private String oninvokeMethod;
 
     /**
      * Callback instance when async-call is returned
+     * 返回异步调用时的回调实例
      */
     private Object onreturn;
 
     /**
      * Callback method when async-call is returned
+     * 返回异步调用时的回调方法
      */
     private String onreturnMethod;
 
     /**
      * Callback instance when async-call has exception thrown
+     * 异步调用引发异常时的回调实例
      */
     private Object onthrow;
 
     /**
      * Callback method when async-call has exception thrown
+     * 异步调用引发异常时的回调方法
      */
     private String onthrowMethod;
 
     /**
      * The method arguments
+     * 方法参数集合
      */
     private List<ArgumentConfig> arguments;
 
     /**
-     * These properties come from MethodConfig's parent Config module, they will neither be collected directly from xml or API nor be delivered to url
+     * These properties come from MethodConfig's parent Config module,
+     * they will neither be collected directly from xml or API nor be delivered to url
+     * 这些属性来自methodconfig的父配置模块，
+     * 它们既不会直接从XML或API收集，也不会传递到URL。
      */
     private String service;
     private String serviceId;

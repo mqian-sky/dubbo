@@ -41,6 +41,7 @@ import static org.apache.dubbo.common.constants.CommonConstants.TIMEOUT_KEY;
 
 /**
  * DefaultFuture.
+ * 封装处理响应的逻辑
  */
 public class DefaultFuture extends CompletableFuture<Object> {
 

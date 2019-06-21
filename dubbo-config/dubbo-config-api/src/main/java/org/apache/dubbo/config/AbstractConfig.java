@@ -47,6 +47,7 @@ import static org.apache.dubbo.common.constants.CommonConstants.REMOVE_VALUE_PRE
 
 /**
  * Utility methods and public methods for parsing configuration
+ * 解析配置的实用方法和公共方法
  *
  * @export
  */

@@ -52,9 +52,11 @@ public class ProtocolFilterWrapper implements Protocol {
 
     private static <T> Invoker<T> buildInvokerChain(final Invoker<T> invoker, String key, String group) {
         Invoker<T> last = invoker;
+        // 获取对应 组 key 对应的过滤器
         List<Filter> filters = ExtensionLoader.getExtensionLoader(Filter.class).getActivateExtension(invoker.getUrl(), key, group);
 
         if (!filters.isEmpty()) {
+            // 从最后一个过滤器的开始循环，创建一个带有过滤器链的invoker对象
             for (int i = filters.size() - 1; i >= 0; i--) {
                 final Filter filter = filters.get(i);
                 final Invoker<T> next = last;
@@ -114,6 +116,17 @@ public class ProtocolFilterWrapper implements Protocol {
         return protocol.getDefaultPort();
     }
 
+    /**
+     *
+     * 服务暴露
+     *
+     * 当不是注册中心的时候 加强过滤器链的增强
+     * 也就是在 为服务加了过滤
+     * @param invoker Service invoker
+     * @param <T>
+     * @return
+     * @throws RpcException
+     */
     @Override
     public <T> Exporter<T> export(Invoker<T> invoker) throws RpcException {
         if (REGISTRY_PROTOCOL.equals(invoker.getUrl().getProtocol())) {

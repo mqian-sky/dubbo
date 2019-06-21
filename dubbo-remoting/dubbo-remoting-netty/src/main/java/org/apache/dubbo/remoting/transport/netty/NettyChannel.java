@@ -99,9 +99,13 @@ final class NettyChannel extends AbstractChannel {
         boolean success = true;
         int timeout = 0;
         try {
+            // 写入数据  发送消息
             ChannelFuture future = channel.write(message);
+            // 如果已经发送过
             if (sent) {
+                // 获取超时时间
                 timeout = getUrl().getPositiveParameter(TIMEOUT_KEY, DEFAULT_TIMEOUT);
+                // 等待timeout的连接时间后查看是否发送成功
                 success = future.await(timeout);
             }
             Throwable cause = future.getCause();
@@ -126,11 +130,13 @@ final class NettyChannel extends AbstractChannel {
             logger.warn(e.getMessage(), e);
         }
         try {
+            // 如果通道断开，则移除通道
             removeChannelIfDisconnected(channel);
         } catch (Exception e) {
             logger.warn(e.getMessage(), e);
         }
         try {
+            // 清空属性
             attributes.clear();
         } catch (Exception e) {
             logger.warn(e.getMessage(), e);

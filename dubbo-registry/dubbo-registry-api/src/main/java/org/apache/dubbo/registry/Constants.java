@@ -48,13 +48,14 @@ public interface Constants {
     String TRACE_PROTOCOL = "trace";
     /**
      * simple the registry for provider.
-     *
+     * 简化提供程序的注册表。
      * @since 2.7.0
      */
     String SIMPLIFIED_KEY = "simplified";
 
     /**
      * After simplify the registry, should add some paramter individually for provider.
+     * 在简化注册表之后，应该为提供者单独添加一些参数。
      *
      * @since 2.7.0
      */
@@ -62,6 +63,7 @@ public interface Constants {
 
     /**
      * To decide whether register center saves file synchronously, the default value is asynchronously
+     * 要决定注册中心是否同步保存文件，默认值为异步
      */
     String REGISTRY_FILESAVE_SYNC_KEY = "save.file";
 
@@ -74,6 +76,7 @@ public interface Constants {
 
     /**
      * Default value for the times of retry: 3
+     * 默认的重试次数
      */
     int DEFAULT_REGISTRY_RETRY_TIMES = 3;
 

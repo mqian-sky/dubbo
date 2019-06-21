@@ -193,34 +193,43 @@ public class RegistryProtocol implements Protocol {
     @Override
     public <T> Exporter<T> export(final Invoker<T> originInvoker) throws RpcException {
         URL registryUrl = getRegistryUrl(originInvoker);
-        // url to export locally
+        // url to export locall 本地导出的URL
         URL providerUrl = getProviderUrl(originInvoker);
 
         // Subscribe the override data
         // FIXME When the provider subscribes, it will affect the scene : a certain JVM exposes the service and call
         //  the same service. Because the subscribed is cached key with the name of the service, it causes the
         //  subscription information to cover.
+        // 订阅覆盖数据
+        // 修复当提供程序订阅时，它将影响场景：某个JVM公开服务并调用相同的服务。
+        // 因为订阅的是具有服务名称的缓存密钥，所以它会导致
+        // 要覆盖的订阅信息。
         final URL overrideSubscribeUrl = getSubscribedOverrideUrl(providerUrl);
         final OverrideListener overrideSubscribeListener = new OverrideListener(overrideSubscribeUrl, originInvoker);
         overrideListeners.put(overrideSubscribeUrl, overrideSubscribeListener);
 
         providerUrl = overrideUrlWithConfig(providerUrl, overrideSubscribeListener);
-        //export invoker
+        //export invoker 导出服务
         final ExporterChangeableWrapper<T> exporter = doLocalExport(originInvoker, providerUrl);
 
-        // url to registry
+        // url to registry 根据url 加载实现类
         final Registry registry = getRegistry(originInvoker);
+        // 获取已注册的服务提供者URL
         final URL registeredProviderUrl = getRegisteredProviderUrl(providerUrl, registryUrl);
+        // 向服务提供者与消费者注册表中注册服务
         ProviderInvokerWrapper<T> providerInvokerWrapper = ProviderConsumerRegTable.registerProvider(originInvoker,
                 registryUrl, registeredProviderUrl);
         //to judge if we need to delay publish
         boolean register = registeredProviderUrl.getParameter("register", true);
+        // 决定是否注册服务
         if (register) {
+            // 服务注册
             register(registryUrl, registeredProviderUrl);
             providerInvokerWrapper.setReg(true);
         }
 
         // Deprecated! Subscribe to override rules in 2.6.x or before.
+        // 服务订阅
         registry.subscribe(overrideSubscribeUrl, overrideSubscribeListener);
 
         exporter.setRegisterUrl(registeredProviderUrl);

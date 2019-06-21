@@ -30,6 +30,7 @@ public interface ChannelHandler {
 
     /**
      * on channel connected.
+     * 连接通道
      *
      * @param channel channel.
      */
@@ -37,6 +38,7 @@ public interface ChannelHandler {
 
     /**
      * on channel disconnected.
+     * 断开通道
      *
      * @param channel channel.
      */
@@ -44,6 +46,7 @@ public interface ChannelHandler {
 
     /**
      * on message sent.
+     * 发送通道消息
      *
      * @param channel channel.
      * @param message message.
@@ -52,6 +55,7 @@ public interface ChannelHandler {
 
     /**
      * on message received.
+     * 从通道内接受消息
      *
      * @param channel channel.
      * @param message message.
@@ -60,6 +64,7 @@ public interface ChannelHandler {
 
     /**
      * on exception caught.
+     * 从通道内捕获异常
      *
      * @param channel   channel.
      * @param exception exception.

@@ -20,6 +20,7 @@ import org.apache.dubbo.common.utils.StringUtils;
 
 /**
  * The service consumer default configuration
+ * 服务使用者默认配置
  *
  * @export
  */
@@ -29,37 +30,45 @@ public class ConsumerConfig extends AbstractReferenceConfig {
 
     /**
      * Whether to use the default protocol
+     * 是否使用默认协议
      */
     private Boolean isDefault;
 
     /**
      * Networking framework client uses: netty, mina, etc.
+     * 使用网状网络架构：netty、mina etc。
      */
     private String client;
 
     /**
      * Consumer thread pool type: cached, fixed, limit, eager
+     * 使用者线程池类型
      */
     private String threadpool;
 
     /**
      * Consumer threadpool core thread size
+     * 线程池核心线程数
      */
     private Integer corethreads;
 
     /**
      * Consumer threadpool thread size
+     * 线程数
      */
     private Integer threads;
 
     /**
      * Consumer threadpool queue size
+     * 队列数
      */
     private Integer queues;
 
     /**
      * By default, a TCP long-connection communication is shared between the consumer process and the provider process.
      * This property can be set to share multiple TCP long-connection communications. Note that only the dubbo protocol takes effect.
+     * 默认情况下，使用方进程和提供方进程之间共享TCP长连接通信。
+     * 可以将此属性设置为共享多个TCP长连接通信。请注意，只有Dobbo协议才生效。
      */
     private Integer shareconnections;
 

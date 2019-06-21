@@ -35,6 +35,8 @@ import static org.apache.dubbo.rpc.protocol.dubbo.Constants.LAZY_CONNECT_INITIAL
 
 /**
  * dubbo protocol support class.
+ *
+ * 对exchangeclient的装饰 增强调用次数
  */
 @SuppressWarnings("deprecation")
 final class ReferenceCountExchangeClient implements ExchangeClient {
@@ -164,8 +166,9 @@ final class ReferenceCountExchangeClient implements ExchangeClient {
 
     /**
      * when closing the client, the client needs to be set to LazyConnectExchangeClient, and if a new call is made,
-     * the client will "resurrect".
-     *
+     *      * the client will "resurrect".
+     * 关闭客户端时，需要将客户端设置为LazyConnectExchangeClient，如果进行了新的调用，
+     * 客户将“复活”。
      * @return
      */
     private void replaceWithLazyClient() {

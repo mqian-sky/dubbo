@@ -22,16 +22,24 @@ import org.apache.dubbo.remoting.buffer.ChannelBuffer;
 
 import java.io.IOException;
 
+/**
+ * 编解码器
+ * 编码器:应用程序的数据转化为网络格式
+ * 解码器:网络格式转化为应用程序
+ */
 @SPI
 public interface Codec2 {
 
+    // 编码
     @Adaptive({Constants.CODEC_KEY})
     void encode(Channel channel, ChannelBuffer buffer, Object message) throws IOException;
 
+    // 解码
     @Adaptive({Constants.CODEC_KEY})
     Object decode(Channel channel, ChannelBuffer buffer) throws IOException;
 
 
+    // 因为解码的时候 需要解决TCP 拆包 粘包场景 定义的枚举
     enum DecodeResult {
         NEED_MORE_INPUT, SKIP_SOME_INPUT
     }

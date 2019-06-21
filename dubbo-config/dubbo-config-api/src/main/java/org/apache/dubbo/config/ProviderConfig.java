@@ -35,6 +35,7 @@ import static org.apache.dubbo.remoting.Constants.TELNET;
 
 /**
  * The service provider default configuration
+ * 服务提供程序默认配置
  *
  * @export
  * @see org.apache.dubbo.config.ProtocolConfig

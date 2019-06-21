@@ -77,6 +77,15 @@ public abstract class AbstractTimerTask implements TimerTask {
         timer.newTimeout(timeout.task(), tick, TimeUnit.MILLISECONDS);
     }
 
+    /**
+     * 1.如果需要心跳的通道本身如果关闭了，那么跳过,不添加心跳机制
+     * 2.无论是接收还是发送消息，只要超时了设置的心跳间隔，就发送心跳消息来测试是否断开
+     * 3.如果最后一次接收到的消息到现在已经超时了心跳超时时间，那么就认定对方的确断开了
+     *      1.服务器断开->>客户端重连
+     *      2.客户端断开->>服务端断开这个客户端连接
+     * @param timeout a handle which is associated with this task
+     * @throws Exception
+     */
     @Override
     public void run(Timeout timeout) throws Exception {
         Collection<Channel> c = channelProvider.getChannels();

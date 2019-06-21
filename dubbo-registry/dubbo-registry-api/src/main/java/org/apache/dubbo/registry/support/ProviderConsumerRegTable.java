@@ -33,6 +33,7 @@ import java.util.concurrent.ConcurrentMap;
  * @date 2017/11/23
  */
 public class ProviderConsumerRegTable {
+    // 服务提供者invoker集合,key 为服务提供者的url计算的key，就是url.toSeriviceKey()得到的
     public static ConcurrentHashMap<String, ConcurrentMap<Invoker, ProviderInvokerWrapper>> providerInvokers = new ConcurrentHashMap<>();
     public static ConcurrentHashMap<String, Set<ConsumerInvokerWrapper>> consumerInvokers = new ConcurrentHashMap<>();
 

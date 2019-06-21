@@ -41,6 +41,7 @@ import static org.apache.dubbo.remoting.Constants.DUBBO_VERSION_KEY;
 
 /**
  * ProtocolConfig
+ * 协议配置
  *
  * @export
  */

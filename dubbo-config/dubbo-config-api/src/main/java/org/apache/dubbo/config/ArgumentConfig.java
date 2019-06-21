@@ -23,6 +23,7 @@ import java.io.Serializable;
 
 /**
  * The method arguments configuration
+ * 方法参数配置
  *
  * @export
  */
@@ -32,16 +33,19 @@ public class ArgumentConfig implements Serializable {
 
     /**
      * The argument index: index -1 represents not set
+     * 参数索引：index-1表示未设置
      */
     private Integer index = -1;
 
     /**
      * Argument type
+     * 参数类型
      */
     private String type;
 
     /**
      * Whether the argument is the callback interface
+     * 参数是否是回调接口
      */
     private Boolean callback;
 

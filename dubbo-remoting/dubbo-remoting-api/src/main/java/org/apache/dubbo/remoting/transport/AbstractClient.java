@@ -45,9 +45,12 @@ import static org.apache.dubbo.common.constants.CommonConstants.THREADPOOL_KEY;
  */
 public abstract class AbstractClient extends AbstractEndpoint implements Client {
 
+    // 客户端线程名称
     protected static final String CLIENT_THREAD_POOL_NAME = "DubboClientHandler";
     private static final Logger logger = LoggerFactory.getLogger(AbstractClient.class);
+    // 连接锁
     private final Lock connectLock = new ReentrantLock();
+    // 发送消息时，若断开，是否重连
     private final boolean needReconnect;
     protected volatile ExecutorService executor;
 
@@ -57,6 +60,7 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
         needReconnect = url.getParameter(Constants.SEND_RECONNECT_KEY, false);
 
         try {
+            // 打开客户端
             doOpen();
         } catch (Throwable t) {
             close();
@@ -65,7 +69,7 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
                             + " connect to the server " + getRemoteAddress() + ", cause: " + t.getMessage(), t);
         }
         try {
-            // connect.
+            // connect. 连接服务器
             connect();
             if (logger.isInfoEnabled()) {
                 logger.info("Start " + getClass().getSimpleName() + " " + NetUtils.getLocalAddress() + " connect to the server " + getRemoteAddress());
@@ -91,8 +95,18 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
                 .getDefaultExtension().remove(CONSUMER_SIDE, Integer.toString(url.getPort()));
     }
 
+    /**
+     *  包装通道处理器
+     *  设置使用的线程池类型的可缓存线程池
+     *
+     * @param url
+     * @param handler
+     * @return
+     */
     protected static ChannelHandler wrapChannelHandler(URL url, ChannelHandler handler) {
+        // 加入线程名称
         url = ExecutorUtil.setThreadName(url, CLIENT_THREAD_POOL_NAME);
+        // 设置使用的线程池类型
         url = url.addParameterIfAbsent(THREADPOOL_KEY, DEFAULT_CLIENT_THREADPOOL);
         return ChannelHandlers.wrap(handler, url);
     }

@@ -27,7 +27,7 @@ import java.util.Collection;
 
 /**
  * ServerDelegate
- *
+ * 装饰模式 增强
  *
  */
 public class ServerDelegate implements Server {

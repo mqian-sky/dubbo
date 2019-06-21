@@ -21,6 +21,7 @@ import org.apache.dubbo.remoting.exchange.ExchangeChannel;
 
 /**
  * Replier. (API, Prototype, ThreadSafe)
+ * 与ExchangeHandler一样  只是请求数据类型不一样 对应不同的处理器  ReplierDispatcher 调度
  */
 public interface Replier<T> {
 

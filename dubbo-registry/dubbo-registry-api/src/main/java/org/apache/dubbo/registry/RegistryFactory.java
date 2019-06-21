@@ -41,6 +41,16 @@ public interface RegistryFactory {
      *
      * @param url Registry address, is not allowed to be empty
      * @return Registry reference, never return empty value
+     *  连接到注册表
+     * *连接注册表需要支持合同：<br>
+     * * 1。如果设置check=false，则不检查连接，否则在断开连接时引发异常<br>
+     * * 2。支持用户名：URL上的密码授权验证。<br>
+     * * 3。支持备份=10.20.153.10候选注册表群集地址。<br>
+     * * 4。支持文件=registry.cache本地磁盘文件缓存。<br>
+     * * 5。支持超时=1000请求超时设置。<br>
+     * * 6。支持会话=60000会话超时或过期设置。<br>
+     * *@参数url注册表地址，不允许为空
+     * *@返回注册表引用，从不返回空值
      */
     @Adaptive({"protocol"})
     Registry getRegistry(URL url);

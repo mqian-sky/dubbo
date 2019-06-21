@@ -43,6 +43,17 @@ import java.io.InputStream;
 
 /**
  * ExchangeCodec.
+ * 信息交换编解码器
+ *
+ * 0-7位和8-15位：Magic High和Magic Low，类似java字节码文件里的魔数，用来判断是不是dubbo协议的数据包，就是一个固定的数字
+ * 16位：Req/Res：请求还是响应标识。
+ * 17位：2way：单向还是双向
+ * 18位：Event：是否是事件
+ * 19-23位：Serialization 编号
+ * 24-31位：status状态
+ * 32-95位：id编号
+ * 96-127位：body数据
+ * 128-…位：上图表格内的数据
  */
 public class ExchangeCodec extends TelnetCodec {
 

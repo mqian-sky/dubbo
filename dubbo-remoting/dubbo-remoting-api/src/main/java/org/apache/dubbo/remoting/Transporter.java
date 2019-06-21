@@ -22,6 +22,8 @@ import org.apache.dubbo.common.extension.SPI;
 
 /**
  * Transporter. (SPI, Singleton, ThreadSafe)
+ * 这是一个网络传输接口
+ * 1.默认实现NettyTransporter
  * <p>
  * <a href="http://en.wikipedia.org/wiki/Transport_Layer">Transport Layer</a>
  * <a href="http://en.wikipedia.org/wiki/Client%E2%80%93server_model">Client/Server</a>
@@ -33,6 +35,7 @@ public interface Transporter {
 
     /**
      * Bind a server.
+     * 绑定一个服务器
      *
      * @param url     server url
      * @param handler
@@ -45,6 +48,7 @@ public interface Transporter {
 
     /**
      * Connect to a server.
+     * 连接一个服务器 即创建一个客户端
      *
      * @param url     server url
      * @param handler

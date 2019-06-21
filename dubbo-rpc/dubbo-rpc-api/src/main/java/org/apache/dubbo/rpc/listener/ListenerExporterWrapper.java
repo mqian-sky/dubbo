@@ -27,6 +27,7 @@ import java.util.List;
 
 /**
  * ListenerExporter
+ * 服务暴露的包装类
  */
 public class ListenerExporterWrapper<T> implements Exporter<T> {
 
@@ -47,6 +48,7 @@ public class ListenerExporterWrapper<T> implements Exporter<T> {
             for (ExporterListener listener : listeners) {
                 if (listener != null) {
                     try {
+                        // 暴露服务监听
                         listener.exported(this);
                     } catch (RuntimeException t) {
                         logger.error(t.getMessage(), t);
